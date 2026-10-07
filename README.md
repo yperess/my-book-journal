@@ -25,15 +25,17 @@ Built with React 19, TypeScript, MUI (Material UI), Vite and `vite-plugin-pwa`.
    Under *Authorized JavaScript origins*, add every origin the app is served from, e.g.
    `http://localhost:5173`, `http://localhost:4173` and `https://<user>.github.io`.
    You don't need redirect URIs because the app uses the Google Identity Services popup token flow.
-5. Copy the client ID.
+5. Copy the client ID into `.env` (`VITE_GOOGLE_CLIENT_ID`). The repo's `.env` already holds the client ID for this
+   project's own Google Cloud project; a client ID is public (it ships in the app's JavaScript), so it is safe to commit.
 
 ## Running locally
 
 ```bash
-cp .env.example .env.local   # then paste your client ID into VITE_GOOGLE_CLIENT_ID
 npm install
 npm run dev                  # http://localhost:5173
 ```
+
+To use a different OAuth client locally, put `VITE_GOOGLE_CLIENT_ID=...` in `.env.local`, which overrides `.env`.
 
 Other scripts: `npm test` (unit tests), `npm run typecheck`, `npm run build`, `npm run preview`.
 
@@ -42,8 +44,7 @@ Other scripts: `npm test` (unit tests), `npm run typecheck`, `npm run build`, `n
 `.github/workflows/deploy.yml` tests and builds every push and PR, and deploys `main` to GitHub Pages.
 
 1. Repository **Settings → Pages → Source**: *GitHub Actions*.
-2. Repository **Settings → Secrets and variables → Actions → Variables**: add `VITE_GOOGLE_CLIENT_ID`.
-3. Add `https://<user>.github.io` to the OAuth client's authorized JavaScript origins.
+2. Add `https://<user>.github.io` to the OAuth client's authorized JavaScript origins.
 
 The build is served from `/<repo-name>/`. Set `BASE_PATH` when building for a different sub-path.
 
