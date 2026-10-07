@@ -29,6 +29,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // Legal pages are standalone HTML, not routes of the single-page app.
+        navigateFallbackDenylist: [/\/(privacy|terms)\.html$/],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => url.hostname === 'covers.openlibrary.org',

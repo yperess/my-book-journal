@@ -1,6 +1,7 @@
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -63,6 +64,11 @@ export default function SignInScreen() {
           <Typography variant="caption" color="text.secondary">
             The app only asks for access to files it creates (the <code>drive.file</code> scope); it can’t see anything
             else in your Drive.
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            <Link href={`${import.meta.env.BASE_URL}privacy.html`}>Privacy Policy</Link>
+            {' · '}
+            <Link href={`${import.meta.env.BASE_URL}terms.html`}>Terms of Service</Link>
           </Typography>
         </Stack>
       </Paper>

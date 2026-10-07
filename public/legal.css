@@ -1,0 +1,8 @@
+:root { color-scheme: light dark; --bg: #FEF7FF; --fg: #1D1B20; --muted: #49454F; --accent: #6750A4; }
+@media (prefers-color-scheme: dark) { :root { --bg: #141218; --fg: #E6E0E9; --muted: #CAC4D0; --accent: #D0BCFF; } }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 "Roboto Flex", Roboto, system-ui, sans-serif; }
+main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-weight: 500; margin-bottom: 4px; }
+h2 { font-weight: 500; font-size: 1.2rem; margin-top: 32px; }
+.muted { color: var(--muted); }
+a { color: var(--accent); }
