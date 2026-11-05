@@ -25,6 +25,7 @@ export default function BookSearch({ onSelect, onManual }: Props) {
   const [results, setResults] = useState<OpenLibraryResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     const q = query.trim();
@@ -49,7 +50,7 @@ export default function BookSearch({ onSelect, onManual }: Props) {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [query]);
+  }, [query, attempt]);
 
   return (
     <Stack spacing={2} sx={{ minHeight: 0, flex: 1 }}>
@@ -71,7 +72,18 @@ export default function BookSearch({ onSelect, onManual }: Props) {
         }}
       />
       <Box sx={{ height: 4 }}>{loading && <LinearProgress />}</Box>
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && (
+        <Alert
+          severity="error"
+          action={
+            <Button color="inherit" size="small" onClick={() => setAttempt((n) => n + 1)}>
+              Retry
+            </Button>
+          }
+        >
+          {error}
+        </Alert>
+      )}
       <List disablePadding sx={{ overflowY: 'auto', flex: 1 }}>
         {results.map((r) => (
           <ListItemButton key={r.key} onClick={() => onSelect(r)} sx={{ gap: 2, borderRadius: 3, alignItems: 'flex-start' }}>
